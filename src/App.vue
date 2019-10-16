@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <AemContentFragment />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AemContentFragment from './components/AemContentFragment.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    AemContentFragment
   }
 }
 </script>
