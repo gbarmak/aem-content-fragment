@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <AemContentFragment />
+    <Banner />
   </div>
 </template>
 
 <script>
-import AemContentFragment from './components/AemContentFragment.vue'
+import Banner from './components/Banner'
 
 export default {
   name: 'app',
   components: {
-    AemContentFragment
+    Banner
   }
 }
 </script>
