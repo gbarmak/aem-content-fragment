@@ -1,7 +1,7 @@
 <template>
   <section class="banner" v-bind:style="{ backgroundImage: 'url(' + imageUrl + ')' }">
-      <h2>{{ header }}</h2>
-      <p>{{ blurb }}</p>
+      <h1 class="banner__header">{{ header }}</h1>
+      <p class="banner__text">{{ blurb }}</p>
   </section>
 </template>
 
@@ -30,9 +30,27 @@ export default {
 </script>
 
 <style scoped>
-    .banner{
-      width: 1165x;
-      height: 654px;
-      /*line-height: 654px;*/
-    }
+  .banner{
+    background-position: right 0 bottom 0;
+    background-color: #24211c;
+    background-blend-mode: normal;
+    position: relative;
+    height: 460px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #45423c;
+    padding: 40px 0 0 60px;
+  }
+
+  .banner__header{
+    font-size: 34px;
+    font-weight: 600;
+  }
+
+  .banner__text{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 32px;
+    width: 700px;
+  }
 </style>
