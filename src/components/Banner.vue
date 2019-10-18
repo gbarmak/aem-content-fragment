@@ -31,10 +31,10 @@ export default {
 
 <style scoped>
   .banner{
+    background-size: auto;
     background-position: right 0 bottom 0;
     background-color: #24211c;
     background-blend-mode: normal;
-    position: relative;
     height: 460px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -48,9 +48,9 @@ export default {
   }
 
   .banner__text{
+    width: 700px;
     font-size: 18px;
     font-weight: 400;
     line-height: 32px;
-    width: 700px;
   }
 </style>
