@@ -5,7 +5,15 @@
       <p class="faq__intro_text">Please click on any question below to view the response. If you need further assistance, please contact your SSA.</p>
     </header>
       <ul class="faq__list">
-        <li class="faq__item">
+        <li class="faq__item" v-for="item in faqs">
+          <div class="faq__question">
+            <div class="faq__text">{{ item["jcr:content"].data.master.question }}</div>
+            <div class="faq__expand"><i id="expand-icon-1" class="material-icons mdc-list-item__meta">expand_less</i></div>
+          </div>
+          <div class="faq__answer" v-html="item['jcr:content'].data.master.answer">
+          </div>
+        </li>
+        <!-- <li class="faq__item faq__item--active">
           <div class="faq__question">
             <div class="faq__text">How do I reset my password?</div>
             <div class="faq__expand"><i id="expand-icon-0" class="material-icons mdc-list-item__meta">expand_more</i></div>
@@ -13,16 +21,7 @@
           <div class="faq__answer">
             <p>From the login screen, select "Forgot password". Enter your username and then click Submit. An email will be sent to you containing a URL link to reset your password.</p>
           </div>
-        </li>
-        <li class="faq__item faq__item--active">
-          <div class="faq__question">
-            <div class="faq__text">How do I reset my password?</div>
-            <div class="faq__expand"><i id="expand-icon-0" class="material-icons mdc-list-item__meta">expand_more</i></div>
-          </div>
-          <div class="faq__answer">
-            <p>From the login screen, select "Forgot password". Enter your username and then click Submit. An email will be sent to you containing a URL link to reset your password.</p>
-          </div>
-        </li>
+        </li> -->
       </ul>
   </section>
 </template>
@@ -41,7 +40,7 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 28px;
-    padding-bottom:56px;
+    padding-bottom:36px;
   }
   .faq__list{
     list-style-type:none;
@@ -60,6 +59,7 @@
   .faq__answer{
     font-size: 14px;
     font-weight: 300;
+    padding-right: 25px;
   }
   .faq__text{
     padding-top: 5px;
@@ -81,7 +81,7 @@ export default {
           filteredJson[key] = json[key];
         }
       }
-      self.header = filteredJson;
+      self.faqs = filteredJson;
     })
   },
   data() {
