@@ -4,13 +4,11 @@
           <img src="https://d1jc8qawgdf99b.cloudfront.net/@monsantoit/assets/dad/images/v1/logo-mycrop-national.svg" width="140"/>
       </section>
       <hr />
-      <div class="left-nav--links">
-          <div class="left-nav--link">My Profile</div>
-          <div class="left-nav--link">FAQ</div>
-          <div class="left-nav--link">Contact Us</div>
-          <div class="left-nav--link">Feedback</div>
-          <div><router-link to="/home">Go to Home</router-link></div>
-          <div><router-link to="/faq">Go to FAQ</router-link></div>
+      <div class="left-nav__links">
+          <div class="left-nav__link"><router-link to="/home">My Profile</router-link></div>
+          <div class="left-nav__link"><router-link to="/faq">FAQ</router-link></div>
+          <div class="left-nav__link">Contact Us</div>
+          <div class="left-nav__link">Feedback</div>
       </div>
   </nav>
 </template>
@@ -23,17 +21,22 @@
     color: #45423c;
   }
   
-  .left-nav--logo{
+  .left-nav__logo{
     
   }
 
-  .left-nav--links{
+  .left-nav__links{
     margin: 0;
     padding: 8px 0;
     line-height: 1.75;
   }
   
-  .left-nav--link{
+  .left-nav__link{
     cursor: pointer;
+  }
+
+  .left-nav__link a{
+    text-decoration: none;
+    color: #45423c;
   }
 </style>
