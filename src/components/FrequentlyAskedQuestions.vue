@@ -78,10 +78,10 @@ export default {
     })
     .then(function(json) {
       const filteredJson = {};
-      for(let key in json){
+      for(let key in json.en){
         if(!key.includes("jcr:")){
-          if(json[key]['jcr:content'].data.master.tags.includes(brand)){
-            filteredJson[key] = json[key];
+          if(json.en[key]['jcr:content'].data.master.tags.includes(brand)){
+            filteredJson[key] = json.en[key];
           }
         }
       }

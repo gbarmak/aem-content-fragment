@@ -9,14 +9,14 @@
 export default {
   beforeMount() {
     const self = this;
-    fetch('/content/dam/bayer/banner-1/jcr:content/data.infinity.json')
+    fetch('/content/dam/bayer/banners.infinity.json')
     .then(function(response) {
       return response.json();
     })
     .then(function(json) {
-      self.header = json.master.header;
-      self.imageUrl = json.master.image;
-      self.blurb = json.master.blurb;
+      self.header = json.en['banner-1']['jcr:content'].data.master.header;
+      self.imageUrl = json.en['banner-1']['jcr:content'].data.master.image;
+      self.blurb = json.en['banner-1']['jcr:content'].data.master.blurb;
     })
   },
   data() {
