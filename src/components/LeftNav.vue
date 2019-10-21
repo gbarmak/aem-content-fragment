@@ -9,6 +9,8 @@
           <div class="left-nav--link">FAQ</div>
           <div class="left-nav--link">Contact Us</div>
           <div class="left-nav--link">Feedback</div>
+          <div><router-link to="/home">Go to Home</router-link></div>
+          <div><router-link to="/faq">Go to FAQ</router-link></div>
       </div>
   </nav>
 </template>
