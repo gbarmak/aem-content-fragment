@@ -70,6 +70,8 @@
 export default {
   beforeMount() {
     const self = this;
+    const brand = sessionStorage.getItem("brand") || "bayer:brand/dad";
+
     fetch('/content/dam/bayer/faqs.infinity.json')
     .then(function(response) {
       return response.json();
@@ -78,7 +80,9 @@ export default {
       const filteredJson = {};
       for(let key in json){
         if(!key.includes("jcr:")){
-          filteredJson[key] = json[key];
+          if(json[key]['jcr:content'].data.master.tags.includes(brand)){
+            filteredJson[key] = json[key];
+          }
         }
       }
       self.faqs = filteredJson;
