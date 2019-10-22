@@ -70,7 +70,8 @@
 export default {
   beforeMount() {
     const self = this;
-    const brand = sessionStorage.getItem("brand") || "bayer:brand/dad";
+    const brand = sessionStorage.getItem("brand") || "bayer:brand/dad"; //"bayer:brand/channel"
+    const lang = sessionStorage.getItem("lang") || "en";
 
     fetch('/content/dam/bayer/faqs.infinity.json')
     .then(function(response) {
@@ -78,10 +79,10 @@ export default {
     })
     .then(function(json) {
       const filteredJson = {};
-      for(let key in json.en){
+      for(let key in json[lang]){
         if(!key.includes("jcr:")){
-          if(json.en[key]['jcr:content'].data.master.tags.includes(brand)){
-            filteredJson[key] = json.en[key];
+          if(json[lang][key]['jcr:content'].data.master.tags.includes(brand)){
+            filteredJson[key] = json[lang][key];
           }
         }
       }

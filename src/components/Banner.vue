@@ -9,14 +9,16 @@
 export default {
   beforeMount() {
     const self = this;
+    const lang = sessionStorage.getItem("lang") || "en";
+
     fetch('/content/dam/bayer/banners.infinity.json')
     .then(function(response) {
       return response.json();
     })
     .then(function(json) {
-      self.header = json.en['banner-1']['jcr:content'].data.master.header;
-      self.imageUrl = json.en['banner-1']['jcr:content'].data.master.image;
-      self.blurb = json.en['banner-1']['jcr:content'].data.master.blurb;
+      self.header = json[lang]['banner-1']['jcr:content'].data.master.header;
+      self.imageUrl = json[lang]['banner-1']['jcr:content'].data.master.image;
+      self.blurb = json[lang]['banner-1']['jcr:content'].data.master.blurb;
     })
   },
   data() {
