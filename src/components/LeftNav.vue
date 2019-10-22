@@ -1,7 +1,7 @@
 <template>
   <nav class="left-nav">
       <section class="left-nav--logo">
-          <img src="https://d1jc8qawgdf99b.cloudfront.net/@monsantoit/assets/dad/images/v1/logo-mycrop-national.svg" width="140"/>
+          <img src="https://www.slalom.com/sites/default/files/2019-02/slalom-logo-for-seo.png" width="38"/>
       </section>
       <hr />
       <div class="left-nav__links">
