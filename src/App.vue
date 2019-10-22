@@ -1,18 +1,16 @@
 <template>
   <div class="main">
         <div class="left-section"><LeftNav /></div>
-        <div class="right-section"><Banner /></div>
+        <div class="right-section"><router-view /></div>
     </div>
 </template>
 
 <script>
-import Banner from './components/Banner'
 import LeftNav from './components/LeftNav'
 
 export default {
   name: 'app',
   components: {
-    Banner,
     LeftNav
   }
 }
