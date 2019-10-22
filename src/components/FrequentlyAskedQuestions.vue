@@ -79,22 +79,32 @@ export default {
       return response.json();
     })
     .then(function(json) {
-      const filteredJson = {};
-      for(let key in json[lang]){
-        if(!key.includes("jcr:")){
-          if(json[lang][key]['jcr:content'].data.master.tags.includes(brand)){
-            if(json[lang][key]['jcr:content'].data.master.tags.includes("bayer:capabilities/orders")){
-              if(capabilities === "bayer:capabilities/orders"){
-                filteredJson[key] = json[lang][key];
-              }
+      //filterOut non FAQ nodes
+      function retrieveFAQNodes(json){
+        const cleanJson = {};
+        for(let key in json){
+          if(!key.includes("jcr:")){
+            cleanJson[key] = json[key];
+          }
+        }
+        return cleanJson;
+      }
+      
+      const faqs = {};
+      
+      for(let key in retrieveFAQNodes(json[lang])){
+        if(json[lang][key]['jcr:content'].data.master.tags.includes(brand)){
+          if(json[lang][key]['jcr:content'].data.master.tags.includes("bayer:capabilities/orders")){
+            if(capabilities === "bayer:capabilities/orders"){
+              faqs[key] = json[lang][key];
             }
-            else{
-              filteredJson[key] = json[lang][key];
-            }
+          }
+          else{
+            faqs[key] = json[lang][key];
           }
         }
       }
-      self.faqs = filteredJson;
+      self.faqs = faqs;
     })
   },
   data() {
