@@ -72,6 +72,7 @@ export default {
     const self = this;
     const brand = sessionStorage.getItem("brand") || "bayer:brand/dad"; //"bayer:brand/channel"
     const lang = sessionStorage.getItem("lang") || "en";
+    const capabilities = sessionStorage.getItem("capabilities") || "";
 
     fetch('/content/dam/bayer/faqs.infinity.json')
     .then(function(response) {
@@ -82,7 +83,14 @@ export default {
       for(let key in json[lang]){
         if(!key.includes("jcr:")){
           if(json[lang][key]['jcr:content'].data.master.tags.includes(brand)){
-            filteredJson[key] = json[lang][key];
+            if(json[lang][key]['jcr:content'].data.master.tags.includes("bayer:capabilities/orders")){
+              if(capabilities === "bayer:capabilities/orders"){
+                filteredJson[key] = json[lang][key];
+              }
+            }
+            else{
+              filteredJson[key] = json[lang][key];
+            }
           }
         }
       }
