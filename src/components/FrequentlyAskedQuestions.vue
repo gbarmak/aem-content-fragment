@@ -13,15 +13,6 @@
           <div class="faq__answer" v-html="item['jcr:content'].data.master.answer">
           </div>
         </li>
-        <!-- <li class="faq__item faq__item--active">
-          <div class="faq__question">
-            <div class="faq__text">How do I reset my password?</div>
-            <div class="faq__expand"><i id="expand-icon-0" class="material-icons mdc-list-item__meta">expand_more</i></div>
-          </div>
-          <div class="faq__answer">
-            <p>From the login screen, select "Forgot password". Enter your username and then click Submit. An email will be sent to you containing a URL link to reset your password.</p>
-          </div>
-        </li> -->
       </ul>
   </section>
 </template>
