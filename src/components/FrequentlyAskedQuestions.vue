@@ -70,17 +70,17 @@ export default {
       return response.json();
     })
     .then(function(json) {
+      const allFAQs = retrieveFAQNodes(json[lang]);
       const faqsToDisplay = {};
-      for(let key in retrieveFAQNodes(json[lang])){
-        if(isBrandMatch(json[lang][key], brand)){
-          if(isOrdersType(json[lang][key])){
-            if(hasPermissionToViewOrdersType()){
-              faqsToDisplay[key] = json[lang][key];
-            }
+      for(let key in allFAQs){
+        const currentFAQ = json[lang][key];
+        if(isOrdersType(currentFAQ)){
+          if(hasPermissionToViewOrdersType()){
+            faqsToDisplay[key] = currentFAQ;
           }
-          else{
-            faqsToDisplay[key] = json[lang][key];
-          }
+        }
+        else if(isBrandMatch(currentFAQ, brand)){
+          faqsToDisplay[key] = currentFAQ;
         }
       }
       self.faqs = faqsToDisplay;
