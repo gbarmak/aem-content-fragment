@@ -13,15 +13,6 @@
           <div class="faq__answer" v-html="item['jcr:content'].data.master.answer">
           </div>
         </li>
-        <!-- <li class="faq__item faq__item--active">
-          <div class="faq__question">
-            <div class="faq__text">How do I reset my password?</div>
-            <div class="faq__expand"><i id="expand-icon-0" class="material-icons mdc-list-item__meta">expand_more</i></div>
-          </div>
-          <div class="faq__answer">
-            <p>From the login screen, select "Forgot password". Enter your username and then click Submit. An email will be sent to you containing a URL link to reset your password.</p>
-          </div>
-        </li> -->
       </ul>
   </section>
 </template>
@@ -79,22 +70,44 @@ export default {
       return response.json();
     })
     .then(function(json) {
-      const filteredJson = {};
-      for(let key in json[lang]){
-        if(!key.includes("jcr:")){
-          if(json[lang][key]['jcr:content'].data.master.tags.includes(brand)){
-            if(json[lang][key]['jcr:content'].data.master.tags.includes("bayer:capabilities/orders")){
-              if(capabilities === "bayer:capabilities/orders"){
-                filteredJson[key] = json[lang][key];
-              }
-            }
-            else{
-              filteredJson[key] = json[lang][key];
-            }
+      const allFAQs = retrieveFAQNodes(json[lang]);
+      const faqsToDisplay = {};
+      for(let key in allFAQs){
+        const currentFAQ = json[lang][key];
+        if(isOrdersType(currentFAQ)){
+          if(hasPermissionToViewOrdersType()){
+            faqsToDisplay[key] = currentFAQ;
           }
         }
+        else if(isBrandMatch(currentFAQ, brand)){
+          faqsToDisplay[key] = currentFAQ;
+        }
       }
-      self.faqs = filteredJson;
+      self.faqs = faqsToDisplay;
+
+      //Utility functions
+      //filterOut non FAQ nodes
+      function retrieveFAQNodes(json){
+        const cleanJson = {};
+        for(let key in json){
+          if(!key.includes("jcr:")){
+            cleanJson[key] = json[key];
+          }
+        }
+        return cleanJson;
+      }
+
+      function isBrandMatch(faq, brand){
+        return faq['jcr:content'].data.master.tags.includes(brand)
+      }
+
+      function isOrdersType(faq){
+        return faq['jcr:content'].data.master.tags.includes("bayer:capabilities/orders")
+      }
+
+      function hasPermissionToViewOrdersType(){
+        return capabilities === "bayer:capabilities/orders"
+      }
     })
   },
   data() {
