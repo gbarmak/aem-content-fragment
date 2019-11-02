@@ -8,26 +8,45 @@
 <script>
 export default {
   beforeMount() {
+    //mutation
+    // this.$store.commit({
+    //  type: 'increment',
+    //   amount: 40
+    // })
+
     const self = this;
-    const lang = sessionStorage.getItem("lang") || "en";
+    //const lang = sessionStorage.getItem("lang") || "en";
 
     fetch('/content/dam/bayer/banners.infinity.json')
     .then(function(response) {
       return response.json();
     })
     .then(function(json) {
-      self.header = json[lang]['banner-1']['jcr:content'].data.master.header;
-      self.imageUrl = json[lang]['banner-1']['jcr:content'].data.master.image;
-      self.blurb = json[lang]['banner-1']['jcr:content'].data.master.blurb;
+      self.$store.dispatch({
+        type: 'updateBanner',
+        payload: json
+      })
     })
   },
   data() {
     return {
-      header: '',
-      blurb: '',
-      imageUrl: ''
+      
     };
   },
+  computed: {
+    count () {
+      return this.$store.state.count
+    },
+    blurb () {
+      return this.$store.state.blurb
+    },
+    imageUrl () {
+      return this.$store.state.imageUrl
+    },
+    header () {
+      return this.$store.state.header
+    }
+  }
 };
 </script>
 
